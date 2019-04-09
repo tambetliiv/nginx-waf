@@ -32,6 +32,7 @@ RUN ln -s /usr/local/nginx/sbin/nginx /bin/nginx && \
         mv /usr/local/nginx/conf/rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf.example  /usr/local/nginx/conf/rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf && \
         apt-get purge -y git && \
         apt-get autoremove -y
+RUN apt-get install -y libyajl-dev
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 COPY modsec_includes.conf /usr/local/nginx/conf/modsec_includes.conf
 COPY modsecurity.conf /usr/local/nginx/conf/modsecurity.conf
