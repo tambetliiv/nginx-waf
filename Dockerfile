@@ -38,7 +38,8 @@ COPY modsec_includes.conf /usr/local/nginx/conf/modsec_includes.conf
 COPY modsecurity.conf /usr/local/nginx/conf/modsecurity.conf
 COPY crs-setup.conf /usr/local/nginx/conf/rules/crs-setup.conf
 ENV docker_host localhost
+ENV HTTPS_PROTOCOL https
 STOPSIGNAL SIGTERM
-CMD sed -i s/KEY_FILE/$KEY_FILE/g /usr/local/nginx/conf/nginx.conf && sed -i s/CERT_FILE/$CERT_FILE/g /usr/local/nginx/conf/nginx.conf && sed -i s/DOCKER_HOST/$DOCKER_HOST/g /usr/local/nginx/conf/nginx.conf && nginx -g "daemon off;"
+CMD sed -i s/KEY_FILE/$KEY_FILE/g /usr/local/nginx/conf/nginx.conf && sed -i s/CERT_FILE/$CERT_FILE/g /usr/local/nginx/conf/nginx.conf && sed -i s/DOCKER_HOST/$DOCKER_HOST/g /usr/local/nginx/conf/nginx.conf && sed -i s/HTTPS_PROTOCOL/$HTTPS_PROTOCOL/g /usr/local/nginx/conf/nginx.conf && nginx -g "daemon off;"
 #CMD ["""nginx", "-g", "daemon off;"]
 EXPOSE 80 443
